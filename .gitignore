@@ -53,6 +53,7 @@ audio/
 transcripts/
 *.json
 *.txt
+!requirements.txt  # Keep requirements.txt tracked
 Comprehensive_Notes_*.md
 Kompleksowe_Notatki_*.md
 
