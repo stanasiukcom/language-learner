@@ -37,6 +37,12 @@ wheels/
 
 # User-specific config (gitignored to prevent sharing credentials)
 config/config.yaml
+config/*_maciek.yaml
+config/*_personal.yaml
+config/*_private.yaml
+# Exclude all user configs except the example template
+config/*.yaml
+!config/config.example.yaml
 
 # Output files
 output/
