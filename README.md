@@ -24,7 +24,7 @@ Automate your language learning workflow for any language. Download lesson video
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/language-learner.git
+git clone https://github.com/stanasiukcom/language-learner.git
 cd language-learner
 
 # Install dependencies
@@ -274,9 +274,9 @@ MIT License - See [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/language-learner/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/language-learner/discussions)
-- 📧 Email: your.email@example.com
+- 🐛 Issues: [GitHub Issues](https://github.com/stanasiukcom/language-learner/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/stanasiukcom/language-learner/discussions)
+- ⭐ Star the repo: [github.com/stanasiukcom/language-learner](https://github.com/stanasiukcom/language-learner)
 
 ---
 
