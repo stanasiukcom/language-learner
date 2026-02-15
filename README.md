@@ -11,6 +11,7 @@ Automate your language learning workflow for any language. Download lesson video
 - 📥 **Multi-source Download**: Google Drive, YouTube, direct URLs
 - 🎙️ **Auto-Transcription**: OpenAI Whisper with timestamps
 - 📝 **Smart Notes**: Auto-generated comprehensive study materials
+- 📱 **Tablet-Friendly PDFs**: Beautiful, readable PDFs optimized for tablets
 - 🌐 **Multi-Language**: Arabic, Japanese, Chinese, Spanish, French, German, Russian, and more
 - 📚 **Resource Database**: Curated apps, YouTube channels, websites per language
 - 🔄 **Resumable**: Progress tracking for interrupted processing
@@ -31,14 +32,16 @@ cd language-learner
 pip install -r requirements.txt
 
 # Install system dependencies (macOS)
-brew install ffmpeg poppler yt-dlp
+brew install ffmpeg poppler yt-dlp pango gdk-pixbuf glib
 
 # Or Linux (Ubuntu/Debian)
-sudo apt-get install ffmpeg poppler-utils
+sudo apt-get install ffmpeg poppler-utils python3-cffi python3-brotli libpango-1.0-0 libgdk-pixbuf2.0-0
 pip install yt-dlp
 ```
 
 ### 2. Configuration
+
+**⚠️ IMPORTANT: Your config files are automatically gitignored and will NOT be committed.**
 
 ```bash
 # Copy example config
@@ -47,6 +50,8 @@ cp config/config.example.yaml config/config.yaml
 # Edit config.yaml with your course details
 nano config/config.yaml
 ```
+
+**Privacy Note:** Configuration files may contain private Google Drive IDs and personal course information. The `.gitignore` is configured to exclude all `config/*.yaml` files except the example template.
 
 **Minimal configuration:**
 ```yaml
@@ -89,7 +94,8 @@ output/
 ├── transcripts/
 │   ├── lesson1.txt                       # Text transcript
 │   └── lesson1.json                      # JSON with timestamps
-└── Comprehensive_Notes_Spanish_A1.md     # 📖 YOUR STUDY GUIDE
+├── Comprehensive_Notes_Spanish_A1.md     # 📖 YOUR STUDY GUIDE (Markdown)
+└── Comprehensive_Notes_Spanish_A1.pdf    # 📱 TABLET-FRIENDLY VERSION
 ```
 
 ---
@@ -184,6 +190,21 @@ sources:
 ---
 
 ## 🛠️ Advanced Usage
+
+### PDF Generation
+
+PDFs are automatically generated alongside Markdown notes. They feature:
+- **Tablet-optimized formatting** - Perfect for iPad, Android tablets
+- **Beautiful typography** - Readable fonts and spacing
+- **Syntax highlighting** - For code blocks and examples
+- **Table support** - Clean, professional tables
+- **RTL support** - For Arabic, Hebrew, etc.
+
+Disable PDF generation:
+```yaml
+notes:
+  generate_pdf: false
+```
 
 ### Custom Note Templates
 

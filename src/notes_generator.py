@@ -11,6 +11,7 @@ import logging
 
 from config_loader import Config
 from resources_db import ResourcesDatabase
+from pdf_generator import PDFGenerator
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -21,6 +22,7 @@ class NotesGenerator:
     def __init__(self, config: Config):
         self.config = config
         self.resources_db = ResourcesDatabase()
+        self.pdf_generator = PDFGenerator()
 
     def generate(self, output_path: Path):
         """Generate complete notes file"""
@@ -49,11 +51,20 @@ class NotesGenerator:
         # Footer
         content.append(self._generate_footer())
 
-        # Save
+        # Save Markdown
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(content))
 
         logger.info(f"✓ Notes generated: {len(''.join(content))} characters")
+
+        # Generate PDF if enabled
+        if self.config.get('notes.generate_pdf', True):
+            logger.info("Generating PDF version...")
+            pdf_path = self.pdf_generator.generate_from_notes(output_path)
+            if pdf_path:
+                logger.info(f"✓ PDF saved: {pdf_path}")
+            else:
+                logger.warning("PDF generation skipped (install: pip install weasyprint)")
 
     def _generate_header(self) -> str:
         """Generate notes header"""

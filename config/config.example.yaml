@@ -49,6 +49,7 @@ processing:
 # Notes Generation
 notes:
   format: "markdown"  # markdown, html, pdf, docx
+  generate_pdf: true  # Also generate tablet-friendly PDF version
   include_timestamps: true
   include_alphabet: true  # For non-Latin scripts
   include_grammar: true

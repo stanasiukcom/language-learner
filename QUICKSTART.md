@@ -9,7 +9,7 @@ Get started with Language Learner in 5 minutes.
 ### macOS
 ```bash
 # Install system dependencies
-brew install ffmpeg poppler yt-dlp
+brew install ffmpeg poppler yt-dlp pango gdk-pixbuf glib
 
 # Install Python packages
 pip install -r requirements.txt
@@ -19,7 +19,8 @@ pip install -r requirements.txt
 ```bash
 # Install system dependencies
 sudo apt-get update
-sudo apt-get install ffmpeg poppler-utils python3-pip
+sudo apt-get install ffmpeg poppler-utils python3-pip \
+  python3-cffi python3-brotli libpango-1.0-0 libgdk-pixbuf2.0-0
 
 # Install yt-dlp
 pip install yt-dlp
