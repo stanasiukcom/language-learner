@@ -1,0 +1,50 @@
+# Example Configuration - Japanese Course
+
+course:
+  name: "Japanese Beginner"
+  language: "Japanese"
+  level: "JLPT N5"
+  institution: "Online Course"
+
+language:
+  code: "ja"
+  native_language: "en"
+  script: "Hiragana/Katakana/Kanji"
+  rtl: false
+
+sources:
+  # YouTube playlist example
+  - type: "youtube"
+    lessons:
+      - id: "dQw4w9WgXcQ"  # From: youtube.com/watch?v=dQw4w9WgXcQ
+        filename: "lesson1_hiragana.mp4"
+        title: "Hiragana Basics"
+
+      - id: "xvFZjo5PgG0"
+        filename: "lesson2_katakana.mp4"
+        title: "Katakana Basics"
+
+transcription:
+  engine: "whisper"
+  model: "small"       # Faster for testing
+  language: "ja"
+  timestamps: true
+  format: "both"
+
+notes:
+  include_alphabet: true
+  include_resources: true
+  include_exercises: true
+  language: "en"
+  format: "markdown"
+
+paths:
+  output_dir: "output"
+  audio_dir: "output/audio"
+  transcripts_dir: "output/transcripts"
+  notes_file: "output/Comprehensive_Notes_Japanese_N5.md"
+
+advanced:
+  keep_videos: true
+  parallel_processing: false
+  progress_tracking: true

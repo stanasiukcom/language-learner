@@ -1,0 +1,62 @@
+# Example Configuration - Arabic Course
+# Copy this to config/config.yaml and customize
+
+course:
+  name: "Arabic AR1"
+  language: "Arabic"
+  level: "Beginner (A1)"
+  institution: "Language School"
+
+language:
+  code: "ar"           # ISO 639-1 language code
+  native_language: "pl"  # Your native language for notes
+  script: "Arabic"
+  rtl: true            # Right-to-left script
+
+sources:
+  # Google Drive lessons
+  - type: "google_drive"
+    lessons:
+      - id: "1abc123xyz"  # Extract from: drive.google.com/file/d/1abc123xyz/view
+        filename: "lesson1_2026-01-22.mp4"
+        date: "2026-01-22"
+        title: "Introduction & Alphabet"
+
+      - id: "1def456uvw"
+        filename: "lesson2_2026-01-29.mp4"
+        date: "2026-01-29"
+        title: "Basic Greetings"
+
+      - id: "1ghi789rst"
+        filename: "lesson3_2026-02-05.mp4"
+        date: "2026-02-05"
+        title: "Numbers & Counting"
+
+# Transcription settings
+transcription:
+  engine: "whisper"
+  model: "medium"      # Options: tiny, base, small, medium, large
+  language: "ar"       # Auto-detect if null
+  timestamps: true     # Include timestamps in output
+  format: "both"       # "text", "json", or "both"
+
+# Notes generation
+notes:
+  include_alphabet: true
+  include_resources: true
+  include_exercises: true
+  language: "pl"       # Language for generated notes
+  format: "markdown"
+
+# Output paths
+paths:
+  output_dir: "output"
+  audio_dir: "output/audio"
+  transcripts_dir: "output/transcripts"
+  notes_file: "output/Comprehensive_Notes_Arabic_AR1.md"
+
+# Advanced options
+advanced:
+  keep_videos: true        # Keep downloaded videos after processing
+  parallel_processing: false  # Process multiple videos at once (high memory usage)
+  progress_tracking: true  # Enable resumable processing

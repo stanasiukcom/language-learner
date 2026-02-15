@@ -1,0 +1,53 @@
+# Example - Processing YouTube Playlist
+
+course:
+  name: "Spanish from YouTube"
+  language: "Spanish"
+  level: "Intermediate (B1)"
+  institution: "Butterfly Spanish (YouTube)"
+
+language:
+  code: "es"
+  native_language: "en"
+  script: "Latin"
+  rtl: false
+
+sources:
+  - type: "youtube"
+    lessons:
+      - id: "VIDEO_ID_1"
+        filename: "01_ser_vs_estar.mp4"
+        title: "Ser vs Estar Explained"
+
+      - id: "VIDEO_ID_2"
+        filename: "02_subjunctive_intro.mp4"
+        title: "Introduction to Subjunctive"
+
+      - id: "VIDEO_ID_3"
+        filename: "03_por_vs_para.mp4"
+        title: "Por vs Para Usage"
+
+transcription:
+  engine: "whisper"
+  model: "medium"
+  language: "es"
+  timestamps: true
+  format: "both"
+
+notes:
+  include_alphabet: false  # Spanish uses Latin alphabet
+  include_resources: true
+  include_exercises: true
+  language: "en"
+  format: "markdown"
+
+paths:
+  output_dir: "output"
+  audio_dir: "output/audio"
+  transcripts_dir: "output/transcripts"
+  notes_file: "output/Comprehensive_Notes_Spanish_B1.md"
+
+advanced:
+  keep_videos: false  # Delete videos to save space
+  parallel_processing: false
+  progress_tracking: true

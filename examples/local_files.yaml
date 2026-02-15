@@ -1,0 +1,54 @@
+# Example - Processing Local Video Files
+
+course:
+  name: "French University Course"
+  language: "French"
+  level: "Advanced (C1)"
+  institution: "University Recordings"
+
+language:
+  code: "fr"
+  native_language: "en"
+  script: "Latin"
+  rtl: false
+
+sources:
+  # Process videos already in output/ directory
+  - type: "local"
+    lessons:
+      - filename: "lecture_01.mp4"
+        date: "2026-01-10"
+        title: "French Literature - 19th Century"
+
+      - filename: "lecture_02.mp4"
+        date: "2026-01-17"
+        title: "Symbolism Movement"
+
+      - filename: "lecture_03.mp4"
+        date: "2026-01-24"
+        title: "Modern French Poetry"
+
+transcription:
+  engine: "whisper"
+  model: "large"       # Best quality for academic content
+  language: "fr"
+  timestamps: true
+  format: "both"
+
+notes:
+  include_alphabet: false
+  include_resources: true
+  include_exercises: false  # Academic lectures may not need exercises
+  language: "en"
+  format: "markdown"
+
+paths:
+  output_dir: "output"
+  audio_dir: "output/audio"
+  transcripts_dir: "output/transcripts"
+  notes_file: "output/Comprehensive_Notes_French_Literature.md"
+
+advanced:
+  keep_videos: true
+  parallel_processing: false
+  progress_tracking: true

@@ -1,0 +1,79 @@
+# Language Learner Configuration
+# Copy this file to config.yaml and customize for your language course
+
+# Course Information
+course:
+  name: "Arabic AR1"
+  language: "Arabic"
+  level: "Beginner (A1)"
+  institution: "Kierunek Wschód"
+  instructor: "Teacher Name"
+  student_name: "Your Name"
+
+# Language Settings
+language:
+  code: "ar"  # ISO 639-1 code (ar, fr, es, de, ja, zh, etc.)
+  native_language: "pl"  # Your native language for notes
+  script: "Arabic"  # Arabic, Cyrillic, Latin, Kanji, etc.
+  rtl: true  # Right-to-left script
+
+# Video Sources
+sources:
+  - type: "google_drive"  # google_drive, youtube, local, url
+    enabled: true
+    lessons:
+      - id: "FILE_ID_HERE"
+        filename: "lesson1_2026-01-22.mp4"
+        date: "2026-01-22"
+        title: "Introduction and Alphabet"
+      - id: "FILE_ID_HERE"
+        filename: "lesson2_2026-01-29.mp4"
+        date: "2026-01-29"
+        title: "Basic Phrases"
+
+# Transcription Settings
+transcription:
+  engine: "whisper"  # whisper, google, azure, aws
+  model: "medium"  # tiny, base, small, medium, large
+  language: "ar"  # Force language or auto-detect
+  timestamps: true
+  word_timestamps: false
+
+# Processing Options
+processing:
+  extract_audio: true
+  audio_format: "mp3"
+  keep_video: true  # Keep original videos after processing
+  keep_audio: true  # Keep extracted audio files
+
+# Notes Generation
+notes:
+  format: "markdown"  # markdown, html, pdf, docx
+  include_timestamps: true
+  include_alphabet: true  # For non-Latin scripts
+  include_grammar: true
+  include_vocabulary: true
+  include_exercises: true
+  include_resources: true
+
+# External Resources (auto-populated based on language)
+resources:
+  include_apps: true
+  include_youtube: true
+  include_websites: true
+  include_textbooks: true
+  include_communities: true
+
+# Output Settings
+output:
+  directory: "output"
+  transcripts_dir: "transcripts"
+  audio_dir: "audio"
+  notes_filename: "Comprehensive_Notes_{language}_{level}.md"
+
+# Advanced Settings
+advanced:
+  parallel_processing: false  # Process multiple videos simultaneously
+  cleanup_temp_files: true
+  progress_tracking: true
+  auto_backup: false
