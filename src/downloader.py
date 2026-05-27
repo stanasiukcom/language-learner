@@ -6,7 +6,7 @@ Video downloader supporting multiple sources
 import subprocess
 import sys
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -15,9 +15,15 @@ logger = logging.getLogger(__name__)
 class VideoDownloader:
     """Download videos from various sources"""
 
-    def __init__(self, output_dir: Path):
+    def __init__(self, output_dir: Path, cookies_browser: Optional[str] = None):
         self.output_dir = Path(output_dir)
-        self.output_dir.mkdir(exist_ok=True)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.cookies_browser = cookies_browser
+
+    def _cookie_args(self) -> List[str]:
+        if self.cookies_browser:
+            return ["--cookies-from-browser", self.cookies_browser]
+        return []
 
     def download_google_drive(self, file_id: str, output_filename: str) -> bool:
         """Download from Google Drive using yt-dlp"""
@@ -27,7 +33,7 @@ class VideoDownloader:
 
             logger.info(f"Downloading from Google Drive: {output_filename}")
 
-            cmd = ["yt-dlp", url, "-o", str(output_path)]
+            cmd = ["yt-dlp", *self._cookie_args(), url, "-o", str(output_path)]
             result = subprocess.run(cmd, capture_output=True, text=True)
 
             if result.returncode != 0:
@@ -49,7 +55,7 @@ class VideoDownloader:
 
             logger.info(f"Downloading from YouTube: {output_filename}")
 
-            cmd = ["yt-dlp", url, "-o", str(output_path)]
+            cmd = ["yt-dlp", *self._cookie_args(), url, "-o", str(output_path)]
             result = subprocess.run(cmd, capture_output=True, text=True)
 
             if result.returncode != 0:
@@ -70,7 +76,7 @@ class VideoDownloader:
 
             logger.info(f"Downloading from URL: {output_filename}")
 
-            cmd = ["yt-dlp", url, "-o", str(output_path)]
+            cmd = ["yt-dlp", *self._cookie_args(), url, "-o", str(output_path)]
             result = subprocess.run(cmd, capture_output=True, text=True)
 
             if result.returncode != 0:

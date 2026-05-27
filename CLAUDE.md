@@ -195,26 +195,38 @@ def _generate_quiz(self, vocabulary: List[Dict]) -> str:
 
 ## 🧪 Testing Guidelines
 
+### Environment
+
+This project uses **uv** as its package manager. The lockfile (`uv.lock`) is committed and is the source of truth for dependency versions. After cloning or pulling, always run:
+
+```bash
+uv sync
+```
+
+All commands below are shown with `uv run`. If you activated the venv (`source .venv/bin/activate`), drop the prefix.
+
+To add or remove a dependency, edit `pyproject.toml` directly (or use `uv add <pkg>` / `uv remove <pkg>`) and commit the updated `uv.lock`. `requirements.txt` is kept only for users who can't use uv — regenerate it via `uv export --format requirements-txt --no-hashes > requirements.txt` after dependency changes.
+
 ### Manual Testing Workflow
 
 1. **Test download:**
    ```bash
-   python src/main.py --download-only -c config/test_config.yaml
+   uv run python src/main.py --download-only -c config/test_config.yaml
    ```
 
 2. **Test transcription:**
    ```bash
-   python src/main.py --transcribe-only -c config/test_config.yaml
+   uv run python src/main.py --transcribe-only -c config/test_config.yaml
    ```
 
 3. **Test notes generation:**
    ```bash
-   python src/main.py --notes-only -c config/test_config.yaml
+   uv run python src/main.py --notes-only -c config/test_config.yaml
    ```
 
 4. **Full pipeline:**
    ```bash
-   python src/main.py -c config/test_config.yaml
+   uv run python src/main.py -c config/test_config.yaml
    ```
 
 ### Creating Test Fixtures

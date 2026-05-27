@@ -1,0 +1,23 @@
+[project]
+name = "language-learner"
+version = "0.1.0"
+description = "Automated language course processing: download, transcribe, and generate comprehensive study notes."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "openai-whisper>=20231117",
+    "pyyaml>=6.0",
+    "yt-dlp>=2023.12.30",
+    "markdown>=3.5",
+    "weasyprint>=60.0",
+]
+
+[project.optional-dependencies]
+gpu = ["torch>=2.0.0"]
+dev = ["pytest>=7.4.0", "black>=23.0.0", "flake8>=6.0.0"]
+
+# This project is run directly via `uv run python src/main.py` rather than
+# installed as a wheel, so we tell uv not to package it.
+[tool.uv]
+package = false

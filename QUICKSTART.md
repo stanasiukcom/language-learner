@@ -6,38 +6,44 @@ Get started with Language Learner in 5 minutes.
 
 ## Step 1: Install Dependencies
 
+Python dependencies are managed with [**uv**](https://docs.astral.sh/uv/).
+
 ### macOS
 ```bash
-# Install system dependencies
-brew install ffmpeg poppler yt-dlp pango gdk-pixbuf glib
+# Install uv + system libraries
+brew install uv ffmpeg poppler pango gdk-pixbuf glib
 
-# Install Python packages
-pip install -r requirements.txt
+# Create .venv and install all Python dependencies
+uv sync
 ```
 
 ### Linux (Ubuntu/Debian)
 ```bash
-# Install system dependencies
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# System dependencies
 sudo apt-get update
-sudo apt-get install ffmpeg poppler-utils python3-pip \
+sudo apt-get install ffmpeg poppler-utils \
   python3-cffi python3-brotli libpango-1.0-0 libgdk-pixbuf2.0-0
 
-# Install yt-dlp
-pip install yt-dlp
-
-# Install Python packages
-pip install -r requirements.txt
+# Create .venv and install all Python dependencies
+uv sync
 ```
 
 ### Windows
 ```bash
-# Install via Chocolatey
+# Install uv (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# System dependencies
 choco install ffmpeg
 
-# Install Python packages
-pip install -r requirements.txt
-pip install yt-dlp
+# Create .venv and install all Python dependencies
+uv sync
 ```
+
+> `uv sync` creates `.venv/` in the project root and installs everything from `pyproject.toml` / `uv.lock`. Run `source .venv/bin/activate` to use it interactively, or prefix every command with `uv run`.
 
 ---
 
@@ -76,7 +82,7 @@ sources:
 
 ### Full Pipeline (Recommended for first time)
 ```bash
-python src/main.py
+uv run python src/main.py
 ```
 
 This will:
@@ -87,17 +93,19 @@ This will:
 ### Step-by-Step (Optional)
 ```bash
 # Download only
-python src/main.py --download-only
+uv run python src/main.py --download-only
 
 # Transcribe only
-python src/main.py --transcribe-only
+uv run python src/main.py --transcribe-only
 
 # Generate notes only
-python src/main.py --notes-only
+uv run python src/main.py --notes-only
 
 # Use custom config file
-python src/main.py -c config/my_config.yaml
+uv run python src/main.py -c config/my_config.yaml
 ```
+
+> If you ran `source .venv/bin/activate`, drop the `uv run` prefix.
 
 ---
 
@@ -158,9 +166,7 @@ sudo apt install ffmpeg
 ```
 
 ### "yt-dlp: command not found"
-```bash
-pip install yt-dlp
-```
+`yt-dlp` ships with this project's venv. Use `uv run yt-dlp ...` or activate the venv (`source .venv/bin/activate`). If `uv sync` didn't install it, re-run `uv sync`.
 
 ### Google Drive download fails
 - Ensure file is publicly accessible

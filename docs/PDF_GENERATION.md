@@ -63,20 +63,18 @@ The PDF generator uses responsive styling that adapts to:
 
 ## 🔧 Installation
 
+`markdown` and `weasyprint` are already declared in `pyproject.toml`, so they're installed for you by `uv sync`. You only need to install the **system libraries** that WeasyPrint depends on.
+
 ### macOS
 
 ```bash
-# Install system dependencies
 brew install pango gdk-pixbuf glib gobject-introspection
-
-# Install Python packages
-pip install markdown weasyprint
+uv sync   # if you haven't already
 ```
 
 ### Linux (Ubuntu/Debian)
 
 ```bash
-# Install system dependencies
 sudo apt-get install \
   python3-cffi \
   python3-brotli \
@@ -84,20 +82,12 @@ sudo apt-get install \
   libharfbuzz0b \
   libpangoft2-1.0-0 \
   libgdk-pixbuf2.0-0
-
-# Install Python packages
-pip install markdown weasyprint
+uv sync
 ```
 
 ### Windows
 
-```bash
-# Install GTK3 runtime
-# Download from: https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer
-
-# Install Python packages
-pip install markdown weasyprint
-```
+Install the GTK3 runtime (https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer), then `uv sync`.
 
 ---
 
@@ -108,20 +98,20 @@ Convert existing Markdown notes to PDF without re-running the entire pipeline:
 ### Single File
 
 ```bash
-python scripts/standalone_pdf_converter.py notes.md
+uv run python scripts/standalone_pdf_converter.py notes.md
 # Creates: notes.pdf
 ```
 
 ### Custom Output
 
 ```bash
-python scripts/standalone_pdf_converter.py notes.md -o my_study_guide.pdf
+uv run python scripts/standalone_pdf_converter.py notes.md -o my_study_guide.pdf
 ```
 
 ### Batch Conversion
 
 ```bash
-python scripts/standalone_pdf_converter.py output/ --batch
+uv run python scripts/standalone_pdf_converter.py output/ --batch
 # Converts all .md files in output/ directory
 ```
 
@@ -165,7 +155,7 @@ For different tablet sizes:
 ### "WeasyPrint not installed"
 
 ```bash
-pip install weasyprint
+uv sync   # re-install all project dependencies from pyproject.toml
 ```
 
 ### "Cannot load library 'libgobject-2.0-0'" (macOS)
@@ -188,7 +178,7 @@ sudo apt-get install libpango-1.0-0 libgdk-pixbuf2.0-0
 
 - Ensure all system dependencies are installed
 - Check that fonts are available on your system
-- Try regenerating with: `python scripts/standalone_pdf_converter.py notes.md`
+- Try regenerating with: `uv run python scripts/standalone_pdf_converter.py notes.md`
 
 ### Large PDF file size
 

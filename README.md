@@ -23,21 +23,28 @@ Automate your language learning workflow for any language. Download lesson video
 
 ### 1. Installation
 
+This project uses [**uv**](https://docs.astral.sh/uv/) for Python environment and dependency management.
+
 ```bash
+# Install uv (if you don't have it)
+brew install uv                              # macOS
+# or: curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # Clone the repository
 git clone https://github.com/stanasiukcom/language-learner.git
 cd language-learner
 
-# Install dependencies
-pip install -r requirements.txt
+# Create .venv and install all Python dependencies (reads pyproject.toml + uv.lock)
+uv sync
 
 # Install system dependencies (macOS)
-brew install ffmpeg poppler yt-dlp pango gdk-pixbuf glib
+brew install ffmpeg poppler pango gdk-pixbuf glib
 
 # Or Linux (Ubuntu/Debian)
 sudo apt-get install ffmpeg poppler-utils python3-cffi python3-brotli libpango-1.0-0 libgdk-pixbuf2.0-0
-pip install yt-dlp
 ```
+
+> `uv sync` is idempotent — re-run it any time the lockfile or `pyproject.toml` changes. You don't need to `pip install` anything separately. To activate the venv interactively, use `source .venv/bin/activate`; otherwise prefix commands with `uv run`.
 
 ### 2. Configuration
 
@@ -76,13 +83,15 @@ sources:
 
 ```bash
 # Process everything automatically
-python src/main.py
+uv run python src/main.py
 
 # Or step-by-step:
-python src/main.py --download-only    # Download videos
-python src/main.py --transcribe-only  # Transcribe
-python src/main.py --notes-only       # Generate notes
+uv run python src/main.py --download-only    # Download videos
+uv run python src/main.py --transcribe-only  # Transcribe
+uv run python src/main.py --notes-only       # Generate notes
 ```
+
+> Already activated the venv with `source .venv/bin/activate`? You can drop the `uv run` prefix and call `python src/main.py` directly.
 
 ### 4. Results
 
@@ -250,11 +259,7 @@ See `examples/` directory for:
 ## 🐛 Troubleshooting
 
 ### "yt-dlp: command not found"
-```bash
-pip install yt-dlp
-# or
-brew install yt-dlp
-```
+`yt-dlp` is installed inside the project's `.venv` by `uv sync`. Either prefix commands with `uv run` (e.g. `uv run yt-dlp ...`) or activate the venv (`source .venv/bin/activate`). If you want a system-wide yt-dlp, `brew install yt-dlp`.
 
 ### "ffmpeg: command not found"
 ```bash
